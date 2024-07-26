@@ -29,8 +29,12 @@ export default class Car {
     this._color = value;
   }
 
+  static get [Symbol.species]() {
+    return this;
+  }
+
   cloneCar() {
     // Create a new instance using the current instance's constructor
-    return new this.constructor(this._brand, this._motor, this._color);
+    return new this.constructor[Symbol.species]();
   }
 }
