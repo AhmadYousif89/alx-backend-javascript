@@ -1,11 +1,17 @@
 const fs = require('fs');
 
-function countStudents (path) {
-  if (!fs.existsSync(path)) {
+const countStudents = (path) => {
+  if (!fs.existsSync(path) || !fs.statSync(path).isFile()) {
     throw new Error('Cannot load the database');
   }
 
-  const students = fs.readFileSync(path, 'utf8').split('\n').filter(Boolean).slice(1);
+  const students = fs
+    .readFileSync(path, 'utf8')
+    .toString('utf-8')
+    .trim()
+    .split('\n')
+    .filter(Boolean)
+    .slice(1);
 
   console.log('Number of students:', students.length);
 
@@ -21,6 +27,6 @@ function countStudents (path) {
       `Number of students in ${field}: ${names.length}. List: ${names.join(', ')}`
     );
   }
-}
+};
 
 module.exports = countStudents;
