@@ -1,7 +1,7 @@
 const http = require('http');
 const fs = require('fs').promises;
 
-async function countStudents(path) {
+async function countStudents (path) {
   try {
     const data = await fs.readFile(path, 'utf8');
     const students = data.split('\n').filter(Boolean).slice(1);

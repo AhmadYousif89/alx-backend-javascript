@@ -1,4 +1,4 @@
-function greeting() {
+function greeting () {
   console.log('Welcome to Holberton School, what is your name?');
   process.stdin.on('data', function (data) {
     const name = data.toString().trim();

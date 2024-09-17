@@ -1,6 +1,6 @@
 const readFileSync = require('fs').readFileSync;
 
-function countStudents(path) {
+function countStudents (path) {
   try {
     const students = readFileSync(path, 'utf8').split('\n').filter(Boolean).slice(1);
 
