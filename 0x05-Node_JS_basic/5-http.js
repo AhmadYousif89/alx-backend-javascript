@@ -56,7 +56,7 @@ const routes = {
       const responseText = `This is the list of our students\n${data}`;
       sendResponse(res, 200, responseText);
     } catch (err) {
-      sendResponse(res, 200, err.message);
+      sendResponse(res, 200, `This is the list of our students\n${err.message}`);
     }
   },
 };

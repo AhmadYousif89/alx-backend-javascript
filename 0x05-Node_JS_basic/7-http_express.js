@@ -52,7 +52,7 @@ const routes = {
       const data = await countStudents(CSV_FILE);
       sendResponse(res, 200, `This is the list of our students\n${data}`);
     } catch (err) {
-      sendResponse(res, 200, err.message);
+      sendResponse(res, 200, `This is the list of our students\n${err.message}`);
     }
   },
 };
