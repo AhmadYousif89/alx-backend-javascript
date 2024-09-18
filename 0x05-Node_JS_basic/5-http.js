@@ -25,15 +25,11 @@ async function countStudents(csvFile) {
     let output = `Number of students: ${students.length}\n`;
 
     const entries = Object.entries(fields);
-    for (let i = 0; i < entries.length; i++) {
+    for (let i = 0; i < entries.length; i += 1) {
       const [field, names] = entries[i];
       output += `Number of students in ${field}: ${names.length}. List: ${names.join(
         ', ',
-      )}`;
-      // Exclude the last line from having a newline character
-      if (i < entries.length - 1) {
-        output += '\n';
-      }
+      )}\n`;
     }
 
     return output;
@@ -41,6 +37,15 @@ async function countStudents(csvFile) {
     throw new Error('Cannot load the database');
   }
 }
+
+function sendResponse(res, statusCode, content) {
+  res.writeHead(statusCode, {
+    'Content-Type': 'text/plain',
+    'Content-Length': Buffer.byteLength(content),
+  });
+  res.end(content);
+}
+
 const routes = {
   '/': (_, res) => {
     const responseText = 'Hello Holberton School!';
@@ -57,14 +62,6 @@ const routes = {
     }
   },
 };
-
-function sendResponse(res, statusCode, content) {
-  res.writeHead(statusCode, {
-    'Content-Type': 'text/plain',
-    'Content-Length': Buffer.byteLength(content),
-  });
-  res.end(content);
-}
 
 const app = http.createServer((req, res) => {
   const handler = routes[req.url];
