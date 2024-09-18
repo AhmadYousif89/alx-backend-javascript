@@ -24,7 +24,6 @@ async function countStudents(csvFile) {
 
     let output = `Number of students: ${students.length}\n`;
 
-    const entries = Object.entries(fields);
     for (const [field, names] of Object.entries(fields)) {
       output += `Number of students in ${field}: ${names.length}. List: ${names.join(
         ', ',
