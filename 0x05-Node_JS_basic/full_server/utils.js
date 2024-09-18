@@ -1,3 +1,5 @@
+const fs = require('fs').promises;
+
 /**
  * Reads from a CSV data file.
  * @param {String} csvFile The path to the CSV data file.
@@ -5,7 +7,6 @@
  */
 async function readDatabase(csvFile) {
   try {
-    const fs = require('fs').promises;
     const data = await fs.readFile(csvFile, 'utf-8');
 
     const students = data.trim().split('\n').slice(1).filter(Boolean);
