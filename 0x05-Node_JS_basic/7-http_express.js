@@ -1,5 +1,5 @@
-const fs = require('fs').promises;
 const express = require('express');
+const fs = require('fs').promises;
 
 const PORT = 1245;
 const HOST = 'localhost';
@@ -42,18 +42,24 @@ function sendResponse(res, statusCode, content) {
   res.status(statusCode).type('text/plain').send(content);
 }
 
-app.get('/', (_, res) => {
-  sendResponse(res, 200, 'Hello Holberton School!');
-});
+const routes = {
+  '/': (_, res) => {
+    sendResponse(res, 200, 'Hello Holberton School!');
+  },
 
-app.get('/students', async (_, res) => {
-  try {
-    const data = await countStudents(CSV_FILE);
-    sendResponse(res, 200, `This is the list of our students\n${data}`);
-  } catch (err) {
-    sendResponse(res, 200, `This is the list of our students\n${err.message}`);
-  }
-});
+  '/students': async (_, res) => {
+    try {
+      const data = await countStudents(CSV_FILE);
+      sendResponse(res, 200, `This is the list of our students\n${data}`);
+    } catch (err) {
+      sendResponse(res, 200, err.message);
+    }
+  },
+};
+
+for (const [path, handler] of Object.entries(routes)) {
+  app.get(path, handler);
+}
 
 app.listen(PORT, HOST, () => {
   console.log(`Server running at http://${HOST}:${PORT}/`);
