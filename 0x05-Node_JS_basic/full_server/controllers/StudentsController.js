@@ -9,19 +9,22 @@ class StudentsController {
     try {
       const studentGroups = await readDatabase(csvFile);
       const responseParts = ['This is the list of our students'];
-      const sortedEntries = Object.entries(studentGroups).sort((a, b) =>
-        a[0].toLowerCase().localeCompare(b[0].toLowerCase()),
-      );
-
+      const sortedEntries = Object.entries(studentGroups).sort((a, b) => {
+        const lowerCaseA = a[0].toLowerCase();
+        const lowerCaseB = b[0].toLowerCase();
+        return lowerCaseA.localeCompare(lowerCaseB);
+      });
       for (const [field, group] of sortedEntries) {
         const names = group.map((student) => student.firstname).join(', ');
         responseParts.push(
           `Number of students in ${field}: ${group.length}. List: ${names}`,
         );
       }
-      response.status(200).send(responseParts.join('\n'));
+      return response.status(200).send(responseParts.join('\n'));
     } catch (err) {
-      response.status(500).send(err instanceof Error ? err.message : err.toString());
+      return response
+        .status(500)
+        .send(err instanceof Error ? err.message : err.toString());
     }
   }
 
@@ -39,9 +42,11 @@ class StudentsController {
       const responseText = `List: ${group
         .map((student) => student.firstname)
         .join(', ')}`;
-      response.status(200).send(responseText);
+      return response.status(200).send(responseText);
     } catch (err) {
-      response.status(500).send(err instanceof Error ? err.message : err.toString());
+      return response
+        .status(500)
+        .send(err instanceof Error ? err.message : err.toString());
     }
   }
 }
