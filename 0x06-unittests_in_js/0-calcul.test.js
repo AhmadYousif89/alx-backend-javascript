@@ -1,35 +1,5 @@
-const { expect } = require('chai');
 const assert = require('assert');
-
-const calculateNumber = require('./0-calcul.js');
-
-describe('Test calculateNumber using the chia expect module:', () => {
-  it('should correctly add two positive integers', () => {
-    expect(calculateNumber(1, 2)).to.equal(3);
-  });
-
-  it('should correctly add two negative integers', () => {
-    expect(calculateNumber(-1, -2)).to.equal(-3);
-  });
-
-  it('should correctly round and add two positive floats', () => {
-    expect(calculateNumber(1.3, 2.7)).to.equal(4);
-  });
-
-  it('should correctly round and add two negative floats', () => {
-    expect(calculateNumber(-1.7, -2.3)).to.equal(-4);
-  });
-
-  it('should correctly round and add mixed positive and negative floats', () => {
-    expect(calculateNumber(-1.7, 2.3)).to.equal(0);
-  });
-
-  it('should return NaN when non-numeric inputs are provided', () => {
-    expect(isNaN(calculateNumber('abc', 1))).to.be.true;
-    expect(isNaN(calculateNumber(1, 'def'))).to.be.true;
-    expect(isNaN(calculateNumber('1', 'ghi'))).to.be.true;
-  });
-});
+const calculateNumber = require('./0-calcul');
 
 describe('Test calculateNumber using the assert module:', () => {
   it('should return the sum of two rounded numbers', () => {
