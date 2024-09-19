@@ -16,7 +16,7 @@ const Utils = {
       },
     };
 
-    return operations[type] ? operations[type](a, b) : 'Opertation type is not valid';
+    return operations[type] ? operations[type](a, b) : 'Opertation type is invalid';
   },
 };
 
