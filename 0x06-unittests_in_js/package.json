@@ -9,6 +9,7 @@
     "check-lint": "lint [0-9]*.js",
     "lint": "./node_modules/.bin/eslint",
     "test": "./node_modules/mocha/bin/mocha --require babel-register --exit",
+    "test:w": "npm run test -- --watch",
     "dev": "nodemon --exec babel-node --presets babel-preset-env ./full_server/server.js ./database.csv"
   },
   "dependencies": {
