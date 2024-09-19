@@ -1,10 +1,9 @@
-const chai = require('chai');
+const { expect } = require('chai');
 const assert = require('assert');
 
-const expect = chai.expect;
 const calculateNumber = require('./0-calcul.js');
 
-describe('test calculateNumber using the chia expect module:', () => {
+describe('Test calculateNumber using the chia expect module:', () => {
   it('should correctly add two positive integers', () => {
     expect(calculateNumber(1, 2)).to.equal(3);
   });
@@ -32,7 +31,7 @@ describe('test calculateNumber using the chia expect module:', () => {
   });
 });
 
-describe('test calculateNumber using the assert module:', () => {
+describe('Test calculateNumber using the assert module:', () => {
   it('should return the sum of two rounded numbers', () => {
     assert.strictEqual(calculateNumber(1, 3), 4);
     assert.strictEqual(calculateNumber(1, 3.7), 5);
