@@ -1,4 +1,4 @@
-const { spy } = require('sinon');
+const sinon = require('sinon');
 const { expect } = require('chai');
 
 const Utils = require('./utils');
@@ -8,7 +8,7 @@ describe('Test sendPaymentRequestToApi', () => {
   let calculateNumberSpy;
 
   beforeEach(() => {
-    calculateNumberSpy = spy(Utils, 'calculateNumber');
+    calculateNumberSpy = sinon.spy(Utils, 'calculateNumber');
   });
   afterEach(() => {
     calculateNumberSpy.restore();
