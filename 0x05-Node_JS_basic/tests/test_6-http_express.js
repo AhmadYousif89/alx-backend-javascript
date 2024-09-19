@@ -6,8 +6,8 @@ const app = require('../6-http_express');
 chai.use(chaiHttp);
 chai.should();
 
-describe('Small HTTP server using Express', () => {
-  it('Returns the right content', (done) => {
+describe('small HTTP server using Express', () => {
+  it('returns the right content', () => new Promise((done) => {
     chai
       .request(app)
       .get('/')
@@ -15,9 +15,9 @@ describe('Small HTTP server using Express', () => {
         chai.expect(response.text).to.equal('Hello Holberton School!');
         done();
       });
-  });
+  }));
 
-  it('Returns the right status', (done) => {
+  it('returns the right status', () => new Promise((done) => {
     chai
       .request(app)
       .get('/')
@@ -25,11 +25,11 @@ describe('Small HTTP server using Express', () => {
         chai.expect(response.statusCode).to.equal(200);
         done();
       });
-  });
+  }));
 });
 
-describe('Small HTTP server using Express', () => {
-  it('Returns the right status', (done) => {
+describe('small HTTP server using Express', () => {
+  it('returns the right status', () => new Promise((done) => {
     chai
       .request(app)
       .get('/nope')
@@ -37,5 +37,5 @@ describe('Small HTTP server using Express', () => {
         chai.expect(response.statusCode).to.equal(404);
         done();
       });
-  });
+  }));
 });

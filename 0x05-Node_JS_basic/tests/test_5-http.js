@@ -7,9 +7,9 @@ const app = require('../5-http');
 chai.use(chaiHttp);
 chai.should();
 
-describe('More complex HTTP server using node', () => {
+describe('more complex HTTP server using node', () => {
   describe('/endpoint', () => {
-    it('Returns the right content', (done) => {
+    it('returns the right content', () => new Promise((done) => {
       chai
         .request(app)
         .get('/')
@@ -18,17 +18,17 @@ describe('More complex HTTP server using node', () => {
           chai.expect(response.statusCode).to.equal(200);
           done();
         });
-    });
+    }));
   });
 });
 
-describe('More complex HTTP server using node', () => {
+describe('more complex HTTP server using node', () => {
   describe('/students endpoint', () => {
-    describe('When the database is available', () => {
+    describe('when the database is available', () => {
       before(() => {
         process.argv[2] = './database.csv';
       });
-      it('Returns the right content', (done) => {
+      it('returns the right content', () => new Promise((done) => {
         chai
           .request(app)
           .get('/students')
@@ -40,17 +40,17 @@ Number of students in CS: 6. List: Johenn, Arielle, Jonathen, Emmenuel, Guillaum
 Number of students in SWE: 4. List: Guillaume, Joseph, Paul, Tommy`);
             done();
           });
-      });
+      }));
     });
   });
 });
 
-describe('More complex HTTP server using node', () => {
-  describe('When the database is not available', () => {
+describe('more complex HTTP server using node', () => {
+  describe('when the database is not available', () => {
     before(() => {
       process.argv[2] = './blabla.csv';
     });
-    it('Returns the right error message', (done) => {
+    it('returns the right error message', () => new Promise((done) => {
       chai
         .request(app)
         .get('/students')
@@ -59,6 +59,6 @@ describe('More complex HTTP server using node', () => {
 Cannot load the database`);
           done();
         });
-    });
+    }));
   });
 });

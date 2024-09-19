@@ -6,8 +6,8 @@ const app = require('../4-http');
 chai.use(chaiHttp);
 chai.should();
 
-describe('Small HTTP server', () => {
-  it('Returns the right content for /', (done) => {
+describe('small HTTP server', () => {
+  it('returns the right content for /', () => new Promise((done) => {
     chai
       .request(app)
       .get('/')
@@ -16,9 +16,9 @@ describe('Small HTTP server', () => {
         chai.expect(response.statusCode).to.equal(200);
         done();
       });
-  });
+  }));
 
-  it('Returns the right content for /test', (done) => {
+  it('returns the right content for /test', () => new Promise((done) => {
     chai
       .request(app)
       .get('/test')
@@ -27,5 +27,5 @@ describe('Small HTTP server', () => {
         chai.expect(response.statusCode).to.equal(200);
         done();
       });
-  });
+  }));
 });
