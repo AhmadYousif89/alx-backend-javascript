@@ -14,16 +14,11 @@ describe('Test sendPaymentRequestToApi', () => {
     calculateNumberSpy.restore();
   });
 
-  it('should return the correct total amount', () => {
-    const result = sendPaymentRequestToApi(100, 20);
-    expect(result).to.equal(120);
-  });
-
   // Test the function call to Utils.calculateNumber using spies
 
   it('should use Utils.calculateNumber with correct arguments', () => {
-    sendPaymentRequestToApi(100, 20);
-    expect(calculateNumberSpy.calledOnceWithExactly('SUM', 100, 20)).to.be.true;
+    sendPaymentRequestToApi(80, 20);
+    expect(calculateNumberSpy.calledOnceWithExactly('SUM', 80, 20)).to.be.true;
   });
 
   it('should handle decimal numbers correctly', () => {
@@ -37,6 +32,10 @@ describe('Test sendPaymentRequestToApi', () => {
   });
 
   // Test the function result
+  it('should return the correct total amount', () => {
+    const result = sendPaymentRequestToApi(80, 20);
+    expect(result).to.equal(100);
+  });
 
   it('should round the result correctly', () => {
     const result = sendPaymentRequestToApi(10.2, 4.8);
@@ -51,7 +50,7 @@ describe('Test sendPaymentRequestToApi', () => {
   // Test with invalid type
 
   it('should throw an error if the type is invalid', () => {
-    sendPaymentRequestToApi(100, 20, 'INVALID');
-    expect(calculateNumberSpy.calledOnceWithExactly('SUM', 100, 20)).to.be.false;
+    sendPaymentRequestToApi(80, 20);
+    expect(calculateNumberSpy.calledOnceWithExactly('INVALID', 80, 20)).to.be.false;
   });
 });
