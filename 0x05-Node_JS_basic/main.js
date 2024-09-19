@@ -16,14 +16,14 @@ countStudents('nope.csv')
   .then(() => {
     console.log('Done!');
   })
-  .catch(error => {
+  .catch((error) => {
     console.log(error);
   });
 countStudents('database.csv')
   .then(() => {
     console.log('Done!');
   })
-  .catch(error => {
+  .catch((error) => {
     console.log(error);
   });
 console.log('After!');
